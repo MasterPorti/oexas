@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grafica Proyecto</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      type="text/javascript"
+      src="{% static
+    'chart.min.js' %}"
+    ></script>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+    h3 {
+      text-align: center;
+    }
+    .imagen {
+      width: 100%;
+    }
+  </style>
+  <body>
+    <h1>Se muestran las graficas</h1>
+    <section>
+      <h2 class="text">Grafica de barras "Bar"</h2>
+      <canvas width="70" id="myChart"></canvas>
+      <h2 class="text">Grafica de pastel "Pie"</h2>
+      <canvas id="myChart2"></canvas>
+      <h2 class="text">Grafica de line</h2>
+      <canvas id="myChart3"></canvas>
+      <h2 class="text">Grafica de dispersion "Scatter"</h2>
+      <canvas id="myChart4"></canvas>
+      <h2 class="text">Grafica de cajas "Boxplot"</h2>
+      <h3 class="text">
+        El la ultima version de Char.js (4.4.7) no admite crear graficas Boxplot
+        de forma nativa se realizaron con matplotlib y se exportaron a una
+        imagen
+      </h3>
+      <img src="/cajas.png" class="imagen" />
+      <h2 class="text">Grafica de histograma "histograma"</h2>
+      <h3 class="text">
+        El la ultima version de Char.js (4.4.7) no admite crear graficas de
+        histograma de forma nativa se realizaron con matplotlib y se exportaron
+        a una imagen
+      </h3>
+      <img src="/histograma.png" class="imagen" />
+    </section>
+    <script>
+      const ctx = document.getElementById("myChart");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Zafiro", "Esmeralda", "Diamante", "Rubi", "Perla"],
+          datasets: [
+            {
+              label: "Cantidad de Gemas solicitadas",
+              backgroundColor: [
+                "rgba(255,99,132,0.2)",
+                "rgba(54,162,235,0.2)",
+                "rgba(255,206,86,0.2)",
+                "rgba(75,192,192,0.2)",
+                "rgba(153,102,255,0.2)",
+              ],
+              data: [12, 19, 3, 5, 2],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+      const ctx2 = document.getElementById("myChart2");
+      new Chart(ctx2, {
+        type: "pie",
+        data: {
+          labels: ["Zafiro", "Esmeralda", "Diamante", "Rubi", "Perla"],
+          datasets: [
+            {
+              label: "Cantidad de Gemas vendidas",
+              backgroundColor: [
+                "rgba(233,104,198,0.2)",
+                "rgba(252,252,63,0.2)",
+                "rgba(63,215,252,0.2)",
+                "rgba(152,110,247,0.2)",
+                "rgba(110,247,218,0.2)",
+              ],
+              data: [10, 15, 25, 8, 4],
+              borderWidth: 1,
+            },
+          ],
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        },
+      });
+      const ctx3 = document.getElementById("myChart3");
+      new Chart(ctx3, {
+        type: "line",
+        data: {
+          labels: ["Zafiro", "Esmeralda", "Diamante", "Rubi", "Perla"],
+          datasets: [
+            {
+              label: "Inventario de cada Gema",
+              data: [19, 23, 30, 10, 12],
+              borderColor: "rgba(231,97,221,1)",
+              backgroundColor: "rgba(231,97,221,0.2)",
+              borderWidth: 1,
+              fill: true,
+            },
+          ],
+        },
+      });
+      const ctx4 = document.getElementById("myChart4");
+      new Chart(ctx4, {
+        type: "scatter",
+        data: {
+          datasets: [
+            {
+              label: "Personal en cada area",
+              data: [
+                { x: -10, y: 0 },
+                { x: 0, y: 10 },
+                { x: 10, y: 5 },
+                { x: 0.5, y: 5.5 },
+              ],
+              backgroundColor: "rgba(113,110,247,1)",
+              borderColor: "rgba(113,110,247,0.2)",
+              pointRadius: 5,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              type: "linear",
+              position: "bottom",
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
